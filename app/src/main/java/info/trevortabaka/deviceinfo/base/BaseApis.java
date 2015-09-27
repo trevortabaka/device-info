@@ -12,12 +12,12 @@ public class BaseApis implements ApiGroup {
 
     private final Configuration configuration;
     private final DisplayMetrics displayMetrics;
-    private final BaseRuntime runtime;
+    private final Runtime_ runtime;
 
     @Inject
     public BaseApis(Configuration configuration,
                     DisplayMetrics displayMetrics,
-                    BaseRuntime runtime) {
+                    Runtime_ runtime) {
         this.configuration = configuration;
         this.displayMetrics = displayMetrics;
         this.runtime = runtime;

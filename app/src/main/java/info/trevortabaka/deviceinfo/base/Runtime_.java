@@ -14,7 +14,8 @@ import info.trevortabaka.deviceinfo.api.MemoryApi;
 import info.trevortabaka.deviceinfo.util.MyCollections;
 
 @TargetApi(Build.VERSION_CODES.BASE)
-public class BaseRuntime implements ApiGroup {
+// Dagger 2 seems to have an issue when this is called "Runtime"
+public class Runtime_ implements ApiGroup {
     private static final int API_LEVEL = Build.VERSION_CODES.BASE;
 
     public final Api AVAILABLE_PROCESSORS;
@@ -23,7 +24,7 @@ public class BaseRuntime implements ApiGroup {
     public final Api TOTAL_MEMORY;
 
     @Inject
-    public BaseRuntime(java.lang.Runtime runtime) {
+    public Runtime_(java.lang.Runtime runtime) {
         AVAILABLE_PROCESSORS = new IntApi(API_LEVEL, "availableProcessors", runtime.availableProcessors());
         FREE_MEMORY = new MemoryApi(API_LEVEL, "freeMemory", runtime.freeMemory());
         MAX_MEMORY = new MemoryApi(API_LEVEL, "totalMemory", runtime.maxMemory());
