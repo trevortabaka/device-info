@@ -3,6 +3,7 @@ package info.trevortabaka.deviceinfo.ui;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -46,11 +48,34 @@ class ApiListAdapter extends ArrayAdapter<Api> {
     };
     private final LayoutInflater layoutInflater;
     private final Resources resources;
+    private final Object lock = new Object();
+    private List<Api> items;
+    private List<Api> originalItems;
+    private ApiFilter filter;
 
     public ApiListAdapter(Context context, List<Api> objects) {
-        super(context, LAYOUT_ID, objects);
+        super(context, LAYOUT_ID);
+        items = objects;
         layoutInflater = LayoutInflater.from(context);
         resources = context.getResources();
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (filter == null) {
+            filter = new ApiFilter();
+        }
+        return filter;
+    }
+
+    @Override
+    public Api getItem(int position) {
+        return items.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return items.size();
     }
 
     @Override
@@ -98,5 +123,69 @@ class ApiListAdapter extends ArrayAdapter<Api> {
         TextView value;
         TextView api;
         TextView className;
+    }
+
+    private class ApiFilter extends Filter {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            ArrayList<Api> list;
+
+            copyOriginalItemsDuringFirstFilter();
+
+            if (TextUtils.isEmpty(charSequence)) {
+                list = getCopyOfOriginalItems();
+            } else {
+                list = getFilteredItems(charSequence);
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = list;
+            results.count = list.size();
+            return results;
+        }
+
+        private void copyOriginalItemsDuringFirstFilter() {
+            synchronized (lock) {
+                if (originalItems == null) {
+                    originalItems = new ArrayList<>(items);
+                }
+            }
+        }
+
+        @NonNull
+        private ArrayList<Api> getCopyOfOriginalItems() {
+            synchronized (lock) {
+                return new ArrayList<>(originalItems);
+            }
+        }
+
+        @NonNull
+        private ArrayList<Api> getFilteredItems(CharSequence charSequence) {
+            ArrayList<Api> list = new ArrayList<>();
+
+            ArrayList<Api> copyToSearch = getCopyOfOriginalItems();
+
+            charSequence = charSequence.toString().toLowerCase();
+
+            for (Api api : copyToSearch) {
+                if (api.getClassName().toLowerCase().contains(charSequence)
+                        || api.getName().toLowerCase().contains(charSequence)
+                        || api.getValue().toLowerCase().contains(charSequence)
+                        || api.getHumanReadableValue().toLowerCase().contains(charSequence)) {
+                    list.add(api);
+                }
+            }
+            return list;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            items = (List<Api>) filterResults.values;
+            if (filterResults.count > 0) {
+                notifyDataSetChanged();
+            } else {
+                notifyDataSetInvalidated();
+            }
+        }
     }
 }
