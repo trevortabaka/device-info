@@ -20,30 +20,30 @@ public final class DensityDpiValue implements ApiValue {
     public String getHumanReadableValue() {
         switch (densityDpi) {
             case android.util.DisplayMetrics.DENSITY_280:
-                return "DisplayMetrics.DENSITY_280";
+                return "DENSITY_280";
             case android.util.DisplayMetrics.DENSITY_360:
-                return "DisplayMetrics.DENSITY_360";
+                return "DENSITY_360";
             case android.util.DisplayMetrics.DENSITY_400:
-                return "DisplayMetrics.DENSITY_400";
+                return "DENSITY_400";
             case android.util.DisplayMetrics.DENSITY_420:
-                return "DisplayMetrics.DENSITY_420";
+                return "DENSITY_420";
             case android.util.DisplayMetrics.DENSITY_560:
-                return "DisplayMetrics.DENSITY_560";
+                return "DENSITY_560";
             case android.util.DisplayMetrics.DENSITY_HIGH:
-                return "DisplayMetrics.DENSITY_HIGH";
+                return "DENSITY_HIGH";
             case android.util.DisplayMetrics.DENSITY_LOW:
-                return "DisplayMetrics.DENSITY_LOW";
+                return "DENSITY_LOW";
             case android.util.DisplayMetrics.DENSITY_MEDIUM:
                 // a.k.a. android.util.DisplayMetrics.DENSITY_DEFAULT:
-                return "DisplayMetrics.DENSITY_MEDIUM";
+                return "DENSITY_MEDIUM";
             case android.util.DisplayMetrics.DENSITY_TV:
-                return "DisplayMetrics.DENSITY_TV";
+                return "DENSITY_TV";
             case android.util.DisplayMetrics.DENSITY_XHIGH:
-                return "DisplayMetrics.DENSITY_XHIGH";
+                return "DENSITY_XHIGH";
             case android.util.DisplayMetrics.DENSITY_XXHIGH:
-                return "DisplayMetrics.DENSITY_XXHIGH";
+                return "DENSITY_XXHIGH";
             case android.util.DisplayMetrics.DENSITY_XXXHIGH:
-                return "DisplayMetrics.DENSITY_XXXHIGH";
+                return "DENSITY_XXXHIGH";
             default:
                 return null;
         }

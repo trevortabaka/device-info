@@ -20,15 +20,15 @@ public class ScreenLayoutSizeValue implements ApiValue {
     public String getHumanReadableValue() {
         switch (screenLayoutSize) {
             case android.content.res.Configuration.SCREENLAYOUT_SIZE_LARGE:
-                return "Configuration.SCREENLAYOUT_SIZE_LARGE";
+                return "SCREENLAYOUT_SIZE_LARGE";
             case android.content.res.Configuration.SCREENLAYOUT_SIZE_NORMAL:
-                return "Configuration.SCREENLAYOUT_SIZE_NORMAL";
+                return "SCREENLAYOUT_SIZE_NORMAL";
             case android.content.res.Configuration.SCREENLAYOUT_SIZE_SMALL:
-                return "Configuration.SCREENLAYOUT_SIZE_SMALL";
+                return "SCREENLAYOUT_SIZE_SMALL";
             case android.content.res.Configuration.SCREENLAYOUT_SIZE_UNDEFINED:
-                return "Configuration.SCREENLAYOUT_SIZE_UNDEFINED";
+                return "SCREENLAYOUT_SIZE_UNDEFINED";
             case android.content.res.Configuration.SCREENLAYOUT_SIZE_XLARGE:
-                return "Configuration.SCREENLAYOUT_SIZE_XLARGE";
+                return "SCREENLAYOUT_SIZE_XLARGE";
             default:
                 return null;
         }

@@ -20,11 +20,11 @@ public class ScreenLayoutLongValue implements ApiValue {
     public String getHumanReadableValue() {
         switch (screenLayoutLong) {
             case android.content.res.Configuration.SCREENLAYOUT_LONG_NO:
-                return "Configuration.SCREENLAYOUT_LONG_NO";
+                return "SCREENLAYOUT_LONG_NO";
             case android.content.res.Configuration.SCREENLAYOUT_LONG_UNDEFINED:
-                return "Configuration.SCREENLAYOUT_LONG_UNDEFINED";
+                return "SCREENLAYOUT_LONG_UNDEFINED";
             case android.content.res.Configuration.SCREENLAYOUT_LONG_YES:
-                return "Configuration.SCREENLAYOUT_LONG_YES";
+                return "SCREENLAYOUT_LONG_YES";
             default:
                 return null;
         }

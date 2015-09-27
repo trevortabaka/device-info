@@ -20,13 +20,13 @@ public class OrientationValue implements ApiValue {
     public String getHumanReadableValue() {
         switch (orientation) {
             case android.content.res.Configuration.ORIENTATION_LANDSCAPE:
-                return "Configuration.ORIENTATION_LANDSCAPE";
+                return "ORIENTATION_LANDSCAPE";
             case android.content.res.Configuration.ORIENTATION_PORTRAIT:
-                return "Configuration.ORIENTATION_PORTRAIT";
+                return "ORIENTATION_PORTRAIT";
             case android.content.res.Configuration.ORIENTATION_SQUARE:
-                return "Configuration.ORIENTATION_SQUARE";
+                return "ORIENTATION_SQUARE";
             case android.content.res.Configuration.ORIENTATION_UNDEFINED:
-                return "Configuration.ORIENTATION_UNDEFINED";
+                return "ORIENTATION_UNDEFINED";
             default:
                 return null;
         }

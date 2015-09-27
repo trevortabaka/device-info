@@ -20,13 +20,13 @@ public class TouchscreenValue implements ApiValue {
     public String getHumanReadableValue() {
         switch (touchscreen) {
             case android.content.res.Configuration.TOUCHSCREEN_FINGER:
-                return "Configuration.TOUCHSCREEN_FINGER";
+                return "TOUCHSCREEN_FINGER";
             case android.content.res.Configuration.TOUCHSCREEN_NOTOUCH:
-                return "Configuration.TOUCHSCREEN_NOTOUCH";
+                return "TOUCHSCREEN_NOTOUCH";
             case android.content.res.Configuration.TOUCHSCREEN_UNDEFINED:
-                return "Configuration.TOUCHSCREEN_UNDEFINED";
+                return "TOUCHSCREEN_UNDEFINED";
             case android.content.res.Configuration.TOUCHSCREEN_STYLUS:
-                return "Configuration.TOUCHSCREEN_STYLUS";
+                return "TOUCHSCREEN_STYLUS";
             default:
                 return null;
         }
