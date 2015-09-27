@@ -1,9 +1,9 @@
 package info.trevortabaka.deviceinfo.api;
 
-class MemoryApi extends AbstractApi {
+public class MemoryApi extends AbstractApi {
     private final long memory;
 
-    MemoryApi(int apiLevel, String name, long memory) {
+    public MemoryApi(int apiLevel, String name, long memory) {
         super(apiLevel, name);
         this.memory = memory;
     }

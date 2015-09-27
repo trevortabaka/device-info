@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import info.trevortabaka.deviceinfo.api.AbstractApi;
 import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.api.ApiGroup;
-import info.trevortabaka.deviceinfo.util.CollectionUtil;
+import info.trevortabaka.deviceinfo.util.MyCollections;
 
 @TargetApi(Build.VERSION_CODES.DONUT)
 public class DisplayMetrics implements ApiGroup {
@@ -26,7 +26,7 @@ public class DisplayMetrics implements ApiGroup {
 
     @Override
     public Collection<Api> apis() {
-        return CollectionUtil.combine(DENSITY_DPI);
+        return MyCollections.list(DENSITY_DPI);
     }
 
     public static final class DensityDpi extends AbstractApi {

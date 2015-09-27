@@ -8,9 +8,10 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 import info.trevortabaka.deviceinfo.api.Api;
-import info.trevortabaka.deviceinfo.api.ApiFactory;
 import info.trevortabaka.deviceinfo.api.ApiGroup;
-import info.trevortabaka.deviceinfo.util.CollectionUtil;
+import info.trevortabaka.deviceinfo.api.IntApi;
+import info.trevortabaka.deviceinfo.api.MemoryApi;
+import info.trevortabaka.deviceinfo.util.MyCollections;
 
 @TargetApi(Build.VERSION_CODES.BASE)
 public class BaseRuntime implements ApiGroup {
@@ -22,16 +23,16 @@ public class BaseRuntime implements ApiGroup {
     public final Api TOTAL_MEMORY;
 
     @Inject
-    public BaseRuntime(ApiFactory apiFactory, java.lang.Runtime runtime) {
-        AVAILABLE_PROCESSORS = apiFactory.builder(API_LEVEL, "availableProcessors").of(runtime.availableProcessors());
-        FREE_MEMORY = apiFactory.builder(API_LEVEL, "freeMemory").ofMemory(runtime.freeMemory());
-        MAX_MEMORY = apiFactory.builder(API_LEVEL, "totalMemory").ofMemory(runtime.maxMemory());
-        TOTAL_MEMORY = apiFactory.builder(API_LEVEL, "totalMemory").ofMemory(runtime.totalMemory());
+    public BaseRuntime(java.lang.Runtime runtime) {
+        AVAILABLE_PROCESSORS = new IntApi(API_LEVEL, "availableProcessors", runtime.availableProcessors());
+        FREE_MEMORY = new MemoryApi(API_LEVEL, "freeMemory", runtime.freeMemory());
+        MAX_MEMORY = new MemoryApi(API_LEVEL, "totalMemory", runtime.maxMemory());
+        TOTAL_MEMORY = new MemoryApi(API_LEVEL, "totalMemory", runtime.totalMemory());
     }
 
     @Override
     public Collection<Api> apis() {
-        return CollectionUtil.combine(
+        return MyCollections.list(
                 AVAILABLE_PROCESSORS,
                 FREE_MEMORY,
                 MAX_MEMORY,

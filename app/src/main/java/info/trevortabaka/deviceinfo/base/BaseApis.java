@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.api.ApiGroup;
-import info.trevortabaka.deviceinfo.util.CollectionUtil;
+import info.trevortabaka.deviceinfo.util.MyCollections;
 
 public class BaseApis implements ApiGroup {
 
@@ -25,7 +25,7 @@ public class BaseApis implements ApiGroup {
 
     @Override
     public Collection<Api> apis() {
-        return CollectionUtil.combine(
+        return MyCollections.list2(
                 displayMetrics.apis(),
                 configuration.apis(),
                 runtime.apis());

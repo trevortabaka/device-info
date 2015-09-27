@@ -12,8 +12,9 @@ import javax.inject.Inject;
 import info.trevortabaka.deviceinfo.api.AbstractHumanReadableApi;
 import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.api.ApiGroup;
-import info.trevortabaka.deviceinfo.api.ApiFactory;
-import info.trevortabaka.deviceinfo.util.CollectionUtil;
+import info.trevortabaka.deviceinfo.api.FloatApi;
+import info.trevortabaka.deviceinfo.api.StringApi;
+import info.trevortabaka.deviceinfo.util.MyCollections;
 
 @TargetApi(Build.VERSION_CODES.BASE)
 public class Configuration implements ApiGroup {
@@ -27,9 +28,9 @@ public class Configuration implements ApiGroup {
     public final Api TOUCHSCREEN;
 
     @Inject
-    public Configuration(ApiFactory apiFactory, android.content.res.Configuration configuration) {
-        FONT_SCALE = apiFactory.builder(API_LEVEL, "fontScale").of(configuration.fontScale);
-        LOCALE = apiFactory.builder(API_LEVEL, "locale").of(configuration.locale.toString());
+    public Configuration(android.content.res.Configuration configuration) {
+        FONT_SCALE = new FloatApi(API_LEVEL, "fontScale", configuration.fontScale);
+        LOCALE = new StringApi(API_LEVEL, "locale", configuration.locale.toString());
         ORIENTATION = new OrientationApi(API_LEVEL, "orientation", configuration.orientation);
         SCREEN_LAYOUT_LONG = new ScreenLayoutLongApi(API_LEVEL, "screenLayoutLong", configuration.screenLayout);
         SCREEN_LAYOUT_SIZE = new ScreenLayoutSizeApi(API_LEVEL, "screenLayoutSize", configuration.screenLayout);
@@ -38,12 +39,13 @@ public class Configuration implements ApiGroup {
 
     @Override
     public Collection<Api> apis() {
-        return CollectionUtil.combine(
+        return MyCollections.list(
                 FONT_SCALE,
                 LOCALE,
                 ORIENTATION,
                 SCREEN_LAYOUT_LONG,
-                SCREEN_LAYOUT_SIZE
+                SCREEN_LAYOUT_SIZE,
+                TOUCHSCREEN
         );
     }
 

@@ -8,8 +8,8 @@ import javax.inject.Inject;
 
 import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.api.ApiGroup;
-import info.trevortabaka.deviceinfo.api.ApiFactory;
-import info.trevortabaka.deviceinfo.util.CollectionUtil;
+import info.trevortabaka.deviceinfo.api.StringApi;
+import info.trevortabaka.deviceinfo.util.MyCollections;
 
 public class ActivityManager implements ApiGroup {
     private static final int API_LEVEL = Build.VERSION_CODES.ECLAIR;
@@ -17,12 +17,12 @@ public class ActivityManager implements ApiGroup {
     public final Api MEMORY_CLASS;
 
     @Inject
-    public ActivityManager(ApiFactory apiFactory, android.app.ActivityManager activityManager) {
-        MEMORY_CLASS = apiFactory.builder(API_LEVEL, "memoryClass").of(activityManager.getMemoryClass() + " MiB");
+    public ActivityManager(android.app.ActivityManager activityManager) {
+        MEMORY_CLASS = new StringApi(API_LEVEL, "memoryClass", activityManager.getMemoryClass() + " MiB");
     }
 
     @Override
     public Collection<Api> apis() {
-        return CollectionUtil.combine(MEMORY_CLASS);
+        return MyCollections.list(MEMORY_CLASS);
     }
 }

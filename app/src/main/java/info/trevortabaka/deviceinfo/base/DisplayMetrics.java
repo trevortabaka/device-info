@@ -9,8 +9,9 @@ import javax.inject.Inject;
 
 import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.api.ApiGroup;
-import info.trevortabaka.deviceinfo.api.ApiFactory;
-import info.trevortabaka.deviceinfo.util.CollectionUtil;
+import info.trevortabaka.deviceinfo.api.FloatApi;
+import info.trevortabaka.deviceinfo.util.MyCollections;
+import info.trevortabaka.deviceinfo.api.PixelApi;
 
 @TargetApi(Build.VERSION_CODES.BASE)
 public class DisplayMetrics implements ApiGroup {
@@ -24,18 +25,18 @@ public class DisplayMetrics implements ApiGroup {
     public final Api Y_DPI;
 
     @Inject
-    public DisplayMetrics(ApiFactory apiFactory, android.util.DisplayMetrics displayMetrics) {
-        DENSITY = apiFactory.builder(API_LEVEL, "density").of(displayMetrics.density);
-        HEIGHT_PIXELS = apiFactory.builder(API_LEVEL, "heightPixels").ofPixels(displayMetrics.heightPixels);
-        SCALED_DENSITY = apiFactory.builder(API_LEVEL, "scaledDensity").of(displayMetrics.scaledDensity);
-        WIDTH_PIXELS = apiFactory.builder(API_LEVEL, "widthPixels").ofPixels(displayMetrics.widthPixels);
-        X_DPI = apiFactory.builder(API_LEVEL, "xdpi").ofPixels(displayMetrics.xdpi);
-        Y_DPI = apiFactory.builder(API_LEVEL, "ydpi").ofPixels(displayMetrics.ydpi);
+    public DisplayMetrics(android.util.DisplayMetrics displayMetrics) {
+        DENSITY = new FloatApi(API_LEVEL, "density", displayMetrics.density);
+        HEIGHT_PIXELS = new PixelApi.Builder(API_LEVEL, "heightPixels").with(displayMetrics.heightPixels);
+        SCALED_DENSITY = new FloatApi(API_LEVEL, "scaledDensity", displayMetrics.scaledDensity);
+        WIDTH_PIXELS = new PixelApi.Builder(API_LEVEL, "widthPixels").with(displayMetrics.widthPixels);
+        X_DPI = new PixelApi.Builder(API_LEVEL, "xdpi").with(displayMetrics.xdpi);
+        Y_DPI = new PixelApi.Builder(API_LEVEL, "ydpi").with(displayMetrics.ydpi);
     }
 
     @Override
     public Collection<Api> apis() {
-        return CollectionUtil.combine(
+        return MyCollections.list(
                 DENSITY,
                 HEIGHT_PIXELS,
                 SCALED_DENSITY,

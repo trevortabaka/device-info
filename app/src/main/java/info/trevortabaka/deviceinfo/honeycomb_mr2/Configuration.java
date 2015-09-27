@@ -9,8 +9,8 @@ import javax.inject.Inject;
 
 import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.api.ApiGroup;
-import info.trevortabaka.deviceinfo.api.ApiFactory;
-import info.trevortabaka.deviceinfo.util.CollectionUtil;
+import info.trevortabaka.deviceinfo.api.IntApi;
+import info.trevortabaka.deviceinfo.util.MyCollections;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
 public class Configuration implements ApiGroup {
@@ -21,15 +21,15 @@ public class Configuration implements ApiGroup {
     public final Api SMALLEST_SCREEN_WIDTH_DP;
 
     @Inject
-    public Configuration(ApiFactory apiFactory, android.content.res.Configuration configuration) {
-        SCREEN_HEIGHT_DP = apiFactory.builder(API_LEVEL, "screenHeightDp").of(configuration.screenHeightDp);
-        SCREEN_WIDTH_DP = apiFactory.builder(API_LEVEL, "screenWidthDp").of(configuration.screenWidthDp);
-        SMALLEST_SCREEN_WIDTH_DP = apiFactory.builder(API_LEVEL, "smallestScreenWidthDp").of(configuration.smallestScreenWidthDp);
+    public Configuration(android.content.res.Configuration configuration) {
+        SCREEN_HEIGHT_DP = new IntApi(API_LEVEL, "screenHeightDp", configuration.screenHeightDp);
+        SCREEN_WIDTH_DP = new IntApi(API_LEVEL, "screenWidthDp", configuration.screenWidthDp);
+        SMALLEST_SCREEN_WIDTH_DP = new IntApi(API_LEVEL, "smallestScreenWidthDp", configuration.smallestScreenWidthDp);
     }
 
     @Override
     public Collection<Api> apis() {
-        return CollectionUtil.combine(
+        return MyCollections.list(
                 SCREEN_HEIGHT_DP,
                 SCREEN_WIDTH_DP,
                 SMALLEST_SCREEN_WIDTH_DP

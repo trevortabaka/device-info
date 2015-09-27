@@ -16,8 +16,6 @@ import info.trevortabaka.deviceinfo.eclair.EclairApis;
 import info.trevortabaka.deviceinfo.honeycomb.HoneycombApis;
 import info.trevortabaka.deviceinfo.honeycomb_mr2.HoneycombMR2Apis;
 
-import static android.os.Build.VERSION_CODES.*;
-
 @Module(includes = AndroidModule.class)
 public class ApisModule {
 
@@ -30,19 +28,19 @@ public class ApisModule {
                    Lazy<Api23Apis> api23Apis) {
         List<Api> apis = new ArrayList<>(baseApis.apis());
 
-        if (isApi(DONUT)) {
+        if (isApi(Build.VERSION_CODES.DONUT)) {
             apis.addAll(donutApis.get().apis());
         }
-        if (isApi(ECLAIR)) {
+        if (isApi(Build.VERSION_CODES.ECLAIR)) {
             apis.addAll(eclairApis.get().apis());
         }
-        if (isApi(HONEYCOMB)) {
+        if (isApi(Build.VERSION_CODES.HONEYCOMB)) {
             apis.addAll(honeycombApis.get().apis());
         }
-        if (isApi(HONEYCOMB_MR2)) {
+        if (isApi(Build.VERSION_CODES.HONEYCOMB_MR2)) {
             apis.addAll(honeycombMR2Apis.get().apis());
         }
-        if (isApi(M)) {
+        if (isApi(Build.VERSION_CODES.M)) {
             apis.addAll(api23Apis.get().apis());
         }
 

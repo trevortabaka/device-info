@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.util.DisplayMetrics;
-import android.view.Display;
 
 import dagger.Module;
 import dagger.Provides;
@@ -27,12 +25,8 @@ public class AndroidModule {
     @Provides
     DisplayMetrics displayMetrics() {
         android.util.DisplayMetrics displayMetrics = new android.util.DisplayMetrics();
-        Display defaultDisplay = context.getWindowManager().getDefaultDisplay();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            defaultDisplay.getRealMetrics(displayMetrics);
-        } else {
-            defaultDisplay.getMetrics(displayMetrics);
-        }
+        // TODO different display metrics for API 17
+        context.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics;
     }
 

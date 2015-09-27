@@ -9,8 +9,8 @@ import javax.inject.Inject;
 
 import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.api.ApiGroup;
-import info.trevortabaka.deviceinfo.api.ApiFactory;
-import info.trevortabaka.deviceinfo.util.CollectionUtil;
+import info.trevortabaka.deviceinfo.api.BooleanApi;
+import info.trevortabaka.deviceinfo.util.MyCollections;
 
 @TargetApi(Build.VERSION_CODES.M)
 public class Configuration implements ApiGroup {
@@ -19,12 +19,12 @@ public class Configuration implements ApiGroup {
     public final Api IS_SCREEN_ROUND;
 
     @Inject
-    public Configuration(ApiFactory apiFactory, android.content.res.Configuration configuration) {
-        IS_SCREEN_ROUND = apiFactory.builder(API_LEVEL, "isScreenRound").of(configuration.isScreenRound());
+    public Configuration(android.content.res.Configuration configuration) {
+        IS_SCREEN_ROUND = new BooleanApi(API_LEVEL, "isScreenRound", configuration.isScreenRound());
     }
 
     @Override
     public Collection<Api> apis() {
-        return CollectionUtil.combine(IS_SCREEN_ROUND);
+        return MyCollections.list(IS_SCREEN_ROUND);
     }
 }

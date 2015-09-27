@@ -9,11 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import info.trevortabaka.deviceinfo.R;
 import info.trevortabaka.deviceinfo.api.Api;
+import info.trevortabaka.deviceinfo.R;
 
 class ApiListAdapter extends ArrayAdapter<Api> {
     private static final int LAYOUT_ID = R.layout.item_row;
@@ -45,23 +44,11 @@ class ApiListAdapter extends ArrayAdapter<Api> {
     };
     private final LayoutInflater layoutInflater;
     private final Resources resources;
-    private final List<Api> items;
 
-    public ApiListAdapter(Context context, List<Api> items) {
-        super(context, LAYOUT_ID);
-        this.items = createCachedList(items);
+    public ApiListAdapter(Context context, List<Api> objects) {
+        super(context, LAYOUT_ID, objects);
         layoutInflater = LayoutInflater.from(context);
         resources = context.getResources();
-    }
-
-    @Override
-    public int getCount() {
-        return items.size();
-    }
-
-    @Override
-    public Api getItem(int position) {
-        return items.get(position);
     }
 
     @Override
@@ -94,44 +81,9 @@ class ApiListAdapter extends ArrayAdapter<Api> {
         return view;
     }
 
-    private List<Api> createCachedList(List<Api> objects) {
-        List<Api> cacheApi = new ArrayList<>(objects.size());
-        for (Api object : objects) {
-            cacheApi.add(new CachedApi(object));
-        }
-        return cacheApi;
-    }
-
     private static class Holder {
         TextView name;
         TextView value;
         TextView api;
-    }
-
-    private static class CachedApi implements Api {
-        private String cached;
-        private Api api;
-
-        public CachedApi(Api api) {
-            this.api = api;
-        }
-
-        @Override
-        public int getApiLevel() {
-            return api.getApiLevel();
-        }
-
-        @Override
-        public String getName() {
-            return api.getName();
-        }
-
-        @Override
-        public String getValue() {
-            if (cached == null) {
-                cached = api.getValue();
-            }
-            return cached;
-        }
     }
 }

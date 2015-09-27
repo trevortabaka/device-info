@@ -1,6 +1,5 @@
 package info.trevortabaka.deviceinfo.honeycomb;
 
-import android.annotation.TargetApi;
 import android.os.Build;
 
 import java.util.Collection;
@@ -9,22 +8,21 @@ import javax.inject.Inject;
 
 import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.api.ApiGroup;
-import info.trevortabaka.deviceinfo.api.ApiFactory;
-import info.trevortabaka.deviceinfo.util.CollectionUtil;
+import info.trevortabaka.deviceinfo.api.StringApi;
+import info.trevortabaka.deviceinfo.util.MyCollections;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ActivityManager implements ApiGroup {
     private static final int API_LEVEL = Build.VERSION_CODES.HONEYCOMB;
 
     public final Api LARGE_MEMORY_CLASS;
 
     @Inject
-    public ActivityManager(ApiFactory apiFactory, android.app.ActivityManager activityManager) {
-        LARGE_MEMORY_CLASS = apiFactory.builder(API_LEVEL, "largeMemoryClass").of(activityManager.getLargeMemoryClass() + " MiB");
+    public ActivityManager(android.app.ActivityManager activityManager) {
+        LARGE_MEMORY_CLASS = new StringApi(API_LEVEL, "largeMemoryClass", activityManager.getLargeMemoryClass() + " MiB");
     }
 
     @Override
     public Collection<Api> apis() {
-        return CollectionUtil.combine(LARGE_MEMORY_CLASS);
+        return MyCollections.list(LARGE_MEMORY_CLASS);
     }
 }
