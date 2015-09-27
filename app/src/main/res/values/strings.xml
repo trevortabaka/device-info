@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Device Info</string>
     <string name="api">API</string>
+    <string name="action_sort_api_level">Sort by API Level</string>
+    <string name="action_sort_class_name">Sort by Class Name</string>
+    <string name="action_sort_api_name">Sort by API Name</string>
 </resources>

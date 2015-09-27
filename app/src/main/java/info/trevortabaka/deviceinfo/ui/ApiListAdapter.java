@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.Comparator;
 import java.util.List;
 
 import info.trevortabaka.deviceinfo.R;
@@ -49,6 +50,11 @@ class ApiListAdapter extends ArrayAdapter<Api> {
         super(context, LAYOUT_ID, objects);
         layoutInflater = LayoutInflater.from(context);
         resources = context.getResources();
+    }
+
+    @Override
+    public void sort(Comparator<? super Api> comparator) {
+        super.sort(comparator);
     }
 
     @Override

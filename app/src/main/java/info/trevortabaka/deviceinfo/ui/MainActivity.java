@@ -2,7 +2,9 @@ package info.trevortabaka.deviceinfo.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListAdapter;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import info.trevortabaka.deviceinfo.R;
 import info.trevortabaka.deviceinfo.api.Api;
 
 public class MainActivity extends AppCompatActivity {
+    private ApiListAdapter adapter;
 
     @Inject
     List<Api> apis;
@@ -30,8 +33,32 @@ public class MainActivity extends AppCompatActivity {
                 .inject(this);
 
         ListView list = (ListView) findViewById(R.id.list);
-        ListAdapter adapter = new ApiListAdapter(this, apis);
+        adapter = new ApiListAdapter(this, apis);
         list.setAdapter(adapter);
+        adapter.sort(SortingStrategies.API_LEVEL);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_sort_api_level:
+                adapter.sort(SortingStrategies.API_LEVEL);
+                return true;
+            case R.id.action_sort_api_name:
+                adapter.sort(SortingStrategies.API_NAME);
+                return true;
+            case R.id.action_sort_class_name:
+                adapter.sort(SortingStrategies.CLASS_NAME);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
