@@ -28,7 +28,7 @@ public class ActivityManager implements Class_ {
     @TargetApi(SdkUtil.ECLAIR)
     private void addEclairApis() {
         ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.ECLAIR);
-        apis.add(factory.withName("memoryClass").of(activityManager.getMemoryClass() + " MiB"));
+        apis.add(factory.withName("memoryClass").of(activityManager.getMemoryClass(), "MiB"));
     }
 
     @Override

@@ -73,17 +73,47 @@
         tools:text="13" />
 
     <TextView
-        android:id="@+id/value"
+        android:id="@+id/human_readable_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name"
         android:background="#fff"
-        android:paddingBottom="24dp"
+        android:paddingBottom="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:paddingTop="8dp"
         android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="@color/human_readable_value"
+        tools:text="888 pixels" />
+
+    <TextView
+        android:id="@+id/value_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/human_readable_value"
+        android:background="#fff"
+        android:paddingBottom="24dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="2dp"
+        android:textAppearance="@android:style/TextAppearance.Large"
         android:textColor="@color/value"
-        tools:text="888 px" />
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:text="@string/value_label" />
+
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/value_label"
+        android:layout_toRightOf="@+id/value_label"
+        android:background="#fff"
+        android:paddingBottom="24dp"
+        android:paddingLeft="2dp"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="@color/value"
+        android:textSize="14sp"
+        android:typeface="monospace"
+        tools:text="888" />
 
 </RelativeLayout>

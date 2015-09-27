@@ -15,15 +15,11 @@ public class ApiFactory {
     }
 
     public interface ApiNameFactory {
-        Api of(boolean value);
-
-        Api of(int value);
-
-        Api of(float value);
-
-        Api of(String value);
-
         Api of(ApiValue value);
+
+        <T> Api of(T value);
+
+        <T> Api of(T value, String unit);
     }
 
     private static class Builder implements ApiClassFactory {
@@ -68,28 +64,18 @@ public class ApiFactory {
         }
 
         @Override
-        public Api of(boolean value) {
-            return new ApiImpl(apiClass, apiLevel, name, new StringValueOf<>(value));
-        }
-
-        @Override
-        public Api of(int value) {
-            return new ApiImpl(apiClass, apiLevel, name, new StringValueOf<>(value));
-        }
-
-        @Override
-        public Api of(float value) {
-            return new ApiImpl(apiClass, apiLevel, name, new StringValueOf<>(value));
-        }
-
-        @Override
-        public Api of(String value) {
-            return new ApiImpl(apiClass, apiLevel, name, new StringValueOf<>(value));
-        }
-
-        @Override
         public Api of(ApiValue value) {
             return new ApiImpl(apiClass, apiLevel, name, value);
+        }
+
+        @Override
+        public <T> Api of(T value) {
+            return new ApiImpl(apiClass, apiLevel, name, new StringValue<>(value));
+        }
+
+        @Override
+        public <T> Api of(T value, String unit) {
+            return new ApiImpl(apiClass, apiLevel, name, new UnitValue<>(value, unit));
         }
     }
 }

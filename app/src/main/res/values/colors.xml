@@ -25,5 +25,6 @@
     <color name="lollipop_mr1">#ff8135</color>
     <color name="marshmallow">#ffffff</color>
 
-    <color name="value">#777</color>
+    <color name="value">#aaa</color>
+    <color name="human_readable_value">#777</color>
 </resources>

@@ -68,7 +68,8 @@ class ApiListAdapter extends ArrayAdapter<Api> {
         Holder holder = (Holder) convertView.getTag();
         holder.className.setText(api.getClassName());
         holder.name.setText(api.getName());
-        holder.value.setText(api.getHumanReadableValue() + " (" + api.getValue() + ")");
+        holder.humanReadableValue.setText(api.getHumanReadableValue());
+        holder.value.setText(api.getValue());
         holder.api.setText(String.valueOf(api.getApiLevel()));
 
         int backgroundColor = resources.getColor(colors[api.getApiLevel()]);
@@ -81,9 +82,10 @@ class ApiListAdapter extends ArrayAdapter<Api> {
     private View createView(ViewGroup parent) {
         View view = layoutInflater.inflate(LAYOUT_ID, parent, false);
         Holder holder = new Holder();
-        holder.className = (TextView)view.findViewById(R.id.class_name);
+        holder.className = (TextView) view.findViewById(R.id.class_name);
         holder.name = (TextView) view.findViewById(R.id.name);
         holder.value = (TextView) view.findViewById(R.id.value);
+        holder.humanReadableValue = (TextView) view.findViewById(R.id.human_readable_value);
         holder.api = (TextView) view.findViewById(R.id.api_level);
         view.setTag(holder);
         return view;
@@ -91,6 +93,7 @@ class ApiListAdapter extends ArrayAdapter<Api> {
 
     private static class Holder {
         TextView name;
+        TextView humanReadableValue;
         TextView value;
         TextView api;
         TextView className;

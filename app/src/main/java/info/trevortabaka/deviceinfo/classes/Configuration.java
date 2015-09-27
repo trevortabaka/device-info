@@ -10,11 +10,11 @@ import javax.inject.Inject;
 import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.api.ApiFactory;
 import info.trevortabaka.deviceinfo.api.Class_;
+import info.trevortabaka.deviceinfo.util.SdkUtil;
 import info.trevortabaka.deviceinfo.value.OrientationValue;
 import info.trevortabaka.deviceinfo.value.ScreenLayoutLongValue;
 import info.trevortabaka.deviceinfo.value.ScreenLayoutSizeValue;
 import info.trevortabaka.deviceinfo.value.TouchscreenValue;
-import info.trevortabaka.deviceinfo.util.SdkUtil;
 
 public class Configuration implements Class_ {
     private final android.content.res.Configuration configuration;
@@ -50,15 +50,15 @@ public class Configuration implements Class_ {
     @TargetApi(SdkUtil.HONEYCOMB_MR2)
     private void addHoneycombMR2Apis() {
         ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.HONEYCOMB_MR2);
-        apis.add(factory.withName("screenHeightDp").of(configuration.screenHeightDp));
-        apis.add(factory.withName("screenWidthDp").of(configuration.screenWidthDp));
-        apis.add(factory.withName("smallestScreenWidthDp").of(configuration.smallestScreenWidthDp));
+        apis.add(factory.withName("screenHeightDp").of(configuration.screenHeightDp, "dp"));
+        apis.add(factory.withName("screenWidthDp").of(configuration.screenWidthDp, "dp"));
+        apis.add(factory.withName("smallestScreenWidthDp").of(configuration.smallestScreenWidthDp, "dp"));
     }
 
     @TargetApi(SdkUtil.MARSHMALLOW)
     private void addMarshmallowApis() {
         ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.MARSHMALLOW);
-        apis.add(factory.withName("isScrenRound").of(configuration.isScreenRound()));
+        apis.add(factory.withName("isScreenRound").of(configuration.isScreenRound()));
     }
 
 }

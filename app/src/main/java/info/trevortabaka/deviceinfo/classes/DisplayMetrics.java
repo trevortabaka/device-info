@@ -31,11 +31,11 @@ public class DisplayMetrics implements Class_ {
     private void addBaseApis() {
         ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.BASE);
         apis.add(factory.withName("density").of(displayMetrics.density));
-        apis.add(factory.withName("heightPixels").of(displayMetrics.heightPixels + " px"));
+        apis.add(factory.withName("heightPixels").of(displayMetrics.heightPixels, "px"));
         apis.add(factory.withName("scaledDensity").of(displayMetrics.scaledDensity));
-        apis.add(factory.withName("widthPixels").of(displayMetrics.widthPixels + " px"));
-        apis.add(factory.withName("xdpi").of(displayMetrics.xdpi + " px"));
-        apis.add(factory.withName("ydpi").of(displayMetrics.ydpi + " px"));
+        apis.add(factory.withName("widthPixels").of(displayMetrics.widthPixels, "px"));
+        apis.add(factory.withName("xdpi").of(displayMetrics.xdpi, "px"));
+        apis.add(factory.withName("ydpi").of(displayMetrics.ydpi, "px"));
     }
 
     @TargetApi(SdkUtil.DONUT)

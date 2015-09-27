@@ -1,10 +1,12 @@
 package info.trevortabaka.deviceinfo.api;
 
-class StringValueOf<T> implements ApiValue {
+class UnitValue<T> implements ApiValue {
     private final T value;
+    private final String unit;
 
-    public StringValueOf(T value) {
+    public UnitValue(T value, String unit) {
         this.value = value;
+        this.unit = unit;
     }
 
     @Override
@@ -14,6 +16,6 @@ class StringValueOf<T> implements ApiValue {
 
     @Override
     public String getHumanReadableValue() {
-        return "";
+        return value + " " + unit;
     }
 }
