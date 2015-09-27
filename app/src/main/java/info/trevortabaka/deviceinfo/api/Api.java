@@ -1,10 +1,12 @@
 package info.trevortabaka.deviceinfo.api;
 
-public interface Api {
+public interface Api extends ApiValue {
 
     int getApiLevel();
 
-    String getName();
+    String getClassName();
 
-    String getValue();
+    String getPackageName();
+
+    String getName();
 }

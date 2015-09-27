@@ -1,29 +1,24 @@
-package info.trevortabaka.deviceinfo.api;
+package info.trevortabaka.deviceinfo.value;
 
-import android.support.annotation.Nullable;
+import android.util.DisplayMetrics;
 
-public final class DensityDpiApi extends AbstractApi {
+import info.trevortabaka.deviceinfo.api.ApiValue;
+
+public final class DensityDpiValue implements ApiValue {
     private final int densityDpi;
 
-    public DensityDpiApi(int apiLevel, String name, int densityDpi) {
-        super(apiLevel, name);
-        this.densityDpi = densityDpi;
+    public DensityDpiValue(DisplayMetrics displayMetrics) {
+        densityDpi = displayMetrics.densityDpi;
     }
 
     @Override
     public String getValue() {
-        String humanReadable = getHumanReadableString(densityDpi);
-
-        if (humanReadable == null) {
-            return String.valueOf(densityDpi);
-        } else {
-            return humanReadable + " (" + densityDpi + ")";
-        }
+        return String.valueOf(densityDpi);
     }
 
-    @Nullable
-    private String getHumanReadableString(int rawValue) {
-        switch (rawValue) {
+    @Override
+    public String getHumanReadableValue() {
+        switch (densityDpi) {
             case android.util.DisplayMetrics.DENSITY_280:
                 return "DisplayMetrics.DENSITY_280";
             case android.util.DisplayMetrics.DENSITY_360:
@@ -53,4 +48,5 @@ public final class DensityDpiApi extends AbstractApi {
                 return null;
         }
     }
+
 }

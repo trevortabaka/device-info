@@ -8,39 +8,40 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 import info.trevortabaka.deviceinfo.api.Api;
+import info.trevortabaka.deviceinfo.api.ApiFactory;
 import info.trevortabaka.deviceinfo.api.Class_;
-import info.trevortabaka.deviceinfo.api.DensityDpiApi;
-import info.trevortabaka.deviceinfo.api.FloatApi;
-import info.trevortabaka.deviceinfo.api.PixelApi;
+import info.trevortabaka.deviceinfo.value.DensityDpiValue;
 import info.trevortabaka.deviceinfo.util.SdkUtil;
 
 public class DisplayMetrics implements Class_ {
     private final android.util.DisplayMetrics displayMetrics;
     private final Collection<Api> apis;
+    private final ApiFactory.ApiClassFactory factory;
 
     @Inject
     public DisplayMetrics(android.util.DisplayMetrics displayMetrics) {
         this.displayMetrics = displayMetrics;
         apis = new ArrayList<>();
+        factory = ApiFactory.newInstance(displayMetrics.getClass());
         if (SdkUtil.IS_BASE) addBaseApis();
         if (SdkUtil.IS_DONUT) addDonutApis();
     }
 
     @TargetApi(SdkUtil.BASE)
     private void addBaseApis() {
-        int apiLevel = SdkUtil.BASE;
-        apis.add(new FloatApi(apiLevel, "density", displayMetrics.density));
-        apis.add(new PixelApi.Builder(apiLevel, "heightPixels").with(displayMetrics.heightPixels));
-        apis.add(new FloatApi(apiLevel, "scaledDensity", displayMetrics.scaledDensity));
-        apis.add(new PixelApi.Builder(apiLevel, "widthPixels").with(displayMetrics.widthPixels));
-        apis.add(new PixelApi.Builder(apiLevel, "xdpi").with(displayMetrics.xdpi));
-        apis.add(new PixelApi.Builder(apiLevel, "ydpi").with(displayMetrics.ydpi));
+        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.BASE);
+        apis.add(factory.withName("density").of(displayMetrics.density));
+        apis.add(factory.withName("heightPixels").of(displayMetrics.heightPixels + " px"));
+        apis.add(factory.withName("scaledDensity").of(displayMetrics.scaledDensity));
+        apis.add(factory.withName("widthPixels").of(displayMetrics.widthPixels + " px"));
+        apis.add(factory.withName("xdpi").of(displayMetrics.xdpi + " px"));
+        apis.add(factory.withName("ydpi").of(displayMetrics.ydpi + " px"));
     }
 
     @TargetApi(SdkUtil.DONUT)
     private void addDonutApis() {
-        int apiLevel = SdkUtil.DONUT;
-        apis.add(new DensityDpiApi(apiLevel, "densityDpi", displayMetrics.densityDpi));
+        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.DONUT);
+        apis.add(factory.withName("densityDpi").of(new DensityDpiValue(displayMetrics)));
     }
 
 

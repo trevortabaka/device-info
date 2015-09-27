@@ -1,25 +1,23 @@
-package info.trevortabaka.deviceinfo.api;
+package info.trevortabaka.deviceinfo.value;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.content.res.Configuration;
 
-public class OrientationApi extends AbstractHumanReadableApi<Integer> {
+import info.trevortabaka.deviceinfo.api.ApiValue;
+
+public class OrientationValue implements ApiValue {
     private final int orientation;
 
-    public OrientationApi(int apiLevel, String name, int orientation) {
-        super(apiLevel, name);
-        this.orientation = orientation;
-    }
-
-    @NonNull
-    @Override
-    public Integer getRawValue() {
-        return orientation;
+    public OrientationValue(Configuration configuration) {
+        this.orientation = configuration.orientation;
     }
 
     @Override
-    @Nullable
-    public String getHumanReadableString() {
+    public String getValue() {
+        return String.valueOf(orientation);
+    }
+
+    @Override
+    public String getHumanReadableValue() {
         switch (orientation) {
             case android.content.res.Configuration.ORIENTATION_LANDSCAPE:
                 return "Configuration.ORIENTATION_LANDSCAPE";

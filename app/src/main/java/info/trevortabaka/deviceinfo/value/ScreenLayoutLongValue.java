@@ -1,24 +1,23 @@
-package info.trevortabaka.deviceinfo.api;
+package info.trevortabaka.deviceinfo.value;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.content.res.Configuration;
 
-public class ScreenLayoutLongApi extends AbstractHumanReadableApi<Integer> {
+import info.trevortabaka.deviceinfo.api.ApiValue;
+
+public class ScreenLayoutLongValue implements ApiValue {
     private final int screenLayoutLong;
 
-    public ScreenLayoutLongApi(int apiLevel, String name, int screenLayout) {
-        super(apiLevel, name);
-        screenLayoutLong = screenLayout & android.content.res.Configuration.SCREENLAYOUT_LONG_MASK;
+    public ScreenLayoutLongValue(Configuration configuration) {
+        screenLayoutLong = configuration.screenLayout & android.content.res.Configuration.SCREENLAYOUT_LONG_MASK;
     }
 
-    @NonNull
     @Override
-    public Integer getRawValue() {
-        return screenLayoutLong;
+    public String getValue() {
+        return String.valueOf(screenLayoutLong);
     }
 
-    @Nullable
-    public String getHumanReadableString() {
+    @Override
+    public String getHumanReadableValue() {
         switch (screenLayoutLong) {
             case android.content.res.Configuration.SCREENLAYOUT_LONG_NO:
                 return "Configuration.SCREENLAYOUT_LONG_NO";

@@ -1,24 +1,23 @@
-package info.trevortabaka.deviceinfo.api;
+package info.trevortabaka.deviceinfo.value;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.content.res.Configuration;
 
-public class TouchscreenApi extends AbstractHumanReadableApi<Integer> {
+import info.trevortabaka.deviceinfo.api.ApiValue;
+
+public class TouchscreenValue implements ApiValue {
     private final int touchscreen;
 
-    public TouchscreenApi(int apiLevel, String name, int touchscreen) {
-        super(apiLevel, name);
-        this.touchscreen = touchscreen;
+    public TouchscreenValue(Configuration configuration) {
+        this.touchscreen = configuration.touchscreen;
     }
 
-    @NonNull
     @Override
-    public Integer getRawValue() {
-        return touchscreen;
+    public String getValue() {
+        return String.valueOf(touchscreen);
     }
 
-    @Nullable
-    public String getHumanReadableString() {
+    @Override
+    public String getHumanReadableValue() {
         switch (touchscreen) {
             case android.content.res.Configuration.TOUCHSCREEN_FINGER:
                 return "Configuration.TOUCHSCREEN_FINGER";

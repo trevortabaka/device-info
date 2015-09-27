@@ -1,24 +1,23 @@
-package info.trevortabaka.deviceinfo.api;
+package info.trevortabaka.deviceinfo.value;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.content.res.Configuration;
 
-public class ScreenLayoutSizeApi extends AbstractHumanReadableApi<Integer> {
+import info.trevortabaka.deviceinfo.api.ApiValue;
+
+public class ScreenLayoutSizeValue implements ApiValue {
     private final int screenLayoutSize;
 
-    public ScreenLayoutSizeApi(int apiLevel, String name, int screenLayout) {
-        super(apiLevel, name);
-        screenLayoutSize = screenLayout & android.content.res.Configuration.SCREENLAYOUT_SIZE_MASK;
+    public ScreenLayoutSizeValue(Configuration configuration) {
+        screenLayoutSize = configuration.screenLayout & android.content.res.Configuration.SCREENLAYOUT_SIZE_MASK;
     }
 
-    @NonNull
     @Override
-    public Integer getRawValue() {
-        return screenLayoutSize;
+    public String getValue() {
+        return String.valueOf(screenLayoutSize);
     }
 
-    @Nullable
-    public String getHumanReadableString() {
+    @Override
+    public String getHumanReadableValue() {
         switch (screenLayoutSize) {
             case android.content.res.Configuration.SCREENLAYOUT_SIZE_LARGE:
                 return "Configuration.SCREENLAYOUT_SIZE_LARGE";
