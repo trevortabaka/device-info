@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.R;
+import info.trevortabaka.deviceinfo.api.Api;
 
 class ApiListAdapter extends ArrayAdapter<Api> {
     private static final int LAYOUT_ID = R.layout.item_row;

@@ -36,7 +36,7 @@ public class AndroidModule {
     }
 
     @Provides
-    Runtime runtime() {
-        return Runtime.getRuntime();
+    java.lang.Runtime runtime() {
+        return java.lang.Runtime.getRuntime();
     }
 }
