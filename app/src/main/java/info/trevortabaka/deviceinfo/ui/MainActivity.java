@@ -1,7 +1,9 @@
 package info.trevortabaka.deviceinfo.ui;
 
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,17 +34,23 @@ public class MainActivity extends AppCompatActivity {
                 .build()
                 .inject(this);
 
-        ListView list = (ListView) findViewById(R.id.list);
         adapter = new ApiListAdapter(this, apis);
-        list.setAdapter(adapter);
         adapter.sort(SortingStrategies.API_LEVEL);
+        ListView list = (ListView) findViewById(R.id.list);
+        list.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
+        setupSearchView(menu.findItem(R.id.search));
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void setupSearchView(MenuItem item) {
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(new SearchOnQueryTextListener());
     }
 
     @Override
@@ -59,6 +67,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private class SearchOnQueryTextListener implements SearchView.OnQueryTextListener {
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+            return false;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String newText) {
+            adapter.getFilter().filter(newText);
+            return false;
         }
     }
 }

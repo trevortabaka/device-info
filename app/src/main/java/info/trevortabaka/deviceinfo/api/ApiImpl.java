@@ -42,4 +42,9 @@ class ApiImpl implements Api {
     public String getHumanReadableValue() {
         return value.getHumanReadableValue();
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
