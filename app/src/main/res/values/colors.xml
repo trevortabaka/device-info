@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- API levels -->
+    <color name="base">#3e3e3e</color>
+    <color name="base_1_1">#3e3e3e</color>
+    <color name="cupcake">#ffda48</color>
+    <color name="donut">#b17e5b</color>
+    <color name="eclair">#b19f68</color>
+    <color name="eclair_0_1">#b19f68</color>
+    <color name="eclair_mr1">#b19f68</color>
+    <color name="froyo">#7dffb4</color>
+    <color name="gingerbread">#5d2a22</color>
+    <color name="gingerbread_mr1">#5d2a22</color>
+    <color name="honeycomb">#a78a31</color>
+    <color name="honeycomb_mr1">#a78a31</color>
+    <color name="honeycomb_mr2">#a78a31</color>
+    <color name="ice_cream_sandwich">#302e1f</color>
+    <color name="ice_cream_sandwich_mr1">#302e1f</color>
+    <color name="jelly_bean">#bb0aa9</color>
+    <color name="jelly_bean_mr1">#bb0aa9</color>
+    <color name="jelly_bean_mr2">#bb0aa9</color>
+    <color name="kitkat">#bb0013</color>
+    <color name="kitkat_watch">#bb0013</color>
+    <color name="lollipop">#ff8135</color>
+    <color name="lollipop_mr1">#ff8135</color>
+    <color name="marshmallow">#ffffff</color>
+
+    <color name="value">#777</color>
+</resources>
