@@ -92,11 +92,7 @@ class ApiListAdapter extends ArrayAdapter<Api> {
         Api api = getItem(position);
 
         Holder holder = (Holder) convertView.getTag();
-        holder.className.setText(api.getClassName());
-        holder.name.setText(api.getName());
-        holder.humanReadableValue.setText(api.getHumanReadableValue());
-        holder.value.setText(api.getValue());
-        holder.api.setText(String.valueOf(api.getApiLevel()));
+        holder.update(api);
 
         int backgroundColor = resources.getColor(colors[api.getApiLevel()]);
         convertView.setBackgroundColor(backgroundColor);
@@ -107,22 +103,33 @@ class ApiListAdapter extends ArrayAdapter<Api> {
     @NonNull
     private View createView(ViewGroup parent) {
         View view = layoutInflater.inflate(LAYOUT_ID, parent, false);
-        Holder holder = new Holder();
-        holder.className = (TextView) view.findViewById(R.id.class_name);
-        holder.name = (TextView) view.findViewById(R.id.name);
-        holder.value = (TextView) view.findViewById(R.id.value);
-        holder.humanReadableValue = (TextView) view.findViewById(R.id.human_readable_value);
-        holder.api = (TextView) view.findViewById(R.id.api_level);
+        Holder holder = new Holder(view);
         view.setTag(holder);
         return view;
     }
 
     private static class Holder {
-        TextView name;
-        TextView humanReadableValue;
-        TextView value;
-        TextView api;
-        TextView className;
+        private final TextView name;
+        private final TextView humanReadableValue;
+        private final TextView value;
+        private final TextView apiLevel;
+        private final TextView className;
+
+        public Holder(View view) {
+            className = (TextView) view.findViewById(R.id.class_name);
+            name = (TextView) view.findViewById(R.id.name);
+            value = (TextView) view.findViewById(R.id.value);
+            humanReadableValue = (TextView) view.findViewById(R.id.human_readable_value);
+            apiLevel = (TextView) view.findViewById(R.id.api_level);
+        }
+
+        public void update(Api api) {
+            className.setText(api.getClassName());
+            name.setText(api.getName());
+            humanReadableValue.setText(api.getHumanReadableValue());
+            value.setText(api.getValue());
+            apiLevel.setText(String.valueOf(api.getApiLevel()));
+        }
     }
 
     private class ApiFilter extends Filter {
