@@ -12,6 +12,7 @@ import android.widget.Filter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -80,7 +81,14 @@ class ApiListAdapter extends ArrayAdapter<Api> {
 
     @Override
     public void sort(Comparator<? super Api> comparator) {
-        super.sort(comparator);
+        synchronized (lock) {
+            if (originalItems != null) {
+                Collections.sort(originalItems, comparator);
+            } else {
+                Collections.sort(items, comparator);
+            }
+        }
+        notifyDataSetChanged();
     }
 
     @Override
