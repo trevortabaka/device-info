@@ -16,23 +16,21 @@ import info.trevortabaka.deviceinfo.util.SdkUtil;
 public class Runtime_ implements Class_ {
     private final java.lang.Runtime runtime;
     private final Collection<Api> apis;
-    private final ApiFactory.ApiClassFactory factory;
 
     @Inject
     public Runtime_(java.lang.Runtime runtime) {
         this.runtime = runtime;
         apis = new ArrayList<>();
-        factory = ApiFactory.newInstance(runtime.getClass());
-        if (SdkUtil.IS_1_BASE) addBaseApis();
+        ApiFactory.ApiClassFactory factory = ApiFactory.newInstance(runtime.getClass());
+        if (SdkUtil.IS_1_BASE) addBaseApis(factory.withApi(SdkUtil.BASE));
     }
 
     @TargetApi(SdkUtil.BASE)
-    private void addBaseApis() {
-        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.BASE);
-        apis.add(factory.withName("availableProcessors").of(runtime.availableProcessors()));
-        apis.add(factory.withName("freeMemory").of(new MemoryValue(runtime.freeMemory())));
-        apis.add(factory.withName("maxMemory").of(new MemoryValue(runtime.maxMemory())));
-        apis.add(factory.withName("totalMemory").of(new MemoryValue(runtime.totalMemory())));
+    private void addBaseApis(ApiFactory.ApiLevelFactory factory) {
+        apis.add(factory.withName("availableProcessors()").of(runtime.availableProcessors()));
+        apis.add(factory.withName("freeMemory()").of(new MemoryValue(runtime.freeMemory())));
+        apis.add(factory.withName("maxMemory()").of(new MemoryValue(runtime.maxMemory())));
+        apis.add(factory.withName("totalMemory()").of(new MemoryValue(runtime.totalMemory())));
     }
 
     @Override

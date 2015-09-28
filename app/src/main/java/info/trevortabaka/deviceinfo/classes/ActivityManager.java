@@ -15,20 +15,18 @@ import info.trevortabaka.deviceinfo.util.SdkUtil;
 public class ActivityManager implements Class_ {
     private final android.app.ActivityManager activityManager;
     private final Collection<Api> apis;
-    private final ApiFactory.ApiClassFactory factory;
 
     @Inject
     public ActivityManager(android.app.ActivityManager activityManager) {
         this.activityManager = activityManager;
         apis = new ArrayList<>();
-        factory = ApiFactory.newInstance(activityManager.getClass());
-        if (SdkUtil.IS_5_ECLAIR) addEclairApis();
+        ApiFactory.ApiClassFactory factory = ApiFactory.newInstance(activityManager.getClass());
+        if (SdkUtil.IS_5_ECLAIR) addEclairApis(factory.withApi(SdkUtil.ECLAIR));
     }
 
     @TargetApi(SdkUtil.ECLAIR)
-    private void addEclairApis() {
-        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.ECLAIR);
-        apis.add(factory.withName("memoryClass").of(activityManager.getMemoryClass(), "MiB"));
+    private void addEclairApis(ApiFactory.ApiLevelFactory factory) {
+        apis.add(factory.withName("getMemoryClass()").of(activityManager.getMemoryClass(), "MiB"));
     }
 
     @Override

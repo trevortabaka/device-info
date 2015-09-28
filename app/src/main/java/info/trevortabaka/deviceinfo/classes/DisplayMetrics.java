@@ -16,20 +16,18 @@ import info.trevortabaka.deviceinfo.util.SdkUtil;
 public class DisplayMetrics implements Class_ {
     private final android.util.DisplayMetrics displayMetrics;
     private final Collection<Api> apis;
-    private final ApiFactory.ApiClassFactory factory;
 
     @Inject
     public DisplayMetrics(android.util.DisplayMetrics displayMetrics) {
         this.displayMetrics = displayMetrics;
         apis = new ArrayList<>();
-        factory = ApiFactory.newInstance(displayMetrics.getClass());
-        if (SdkUtil.IS_1_BASE) addBaseApis();
-        if (SdkUtil.IS_4_DONUT) addDonutApis();
+        ApiFactory.ApiClassFactory factory = ApiFactory.newInstance(displayMetrics.getClass());
+        if (SdkUtil.IS_1_BASE) addBaseApis(factory.withApi(SdkUtil.BASE));
+        if (SdkUtil.IS_4_DONUT) addDonutApis(factory.withApi(SdkUtil.DONUT));
     }
 
     @TargetApi(SdkUtil.BASE)
-    private void addBaseApis() {
-        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.BASE);
+    private void addBaseApis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("density").of(displayMetrics.density));
         apis.add(factory.withName("heightPixels").of(displayMetrics.heightPixels, "px"));
         apis.add(factory.withName("scaledDensity").of(displayMetrics.scaledDensity));
@@ -39,8 +37,7 @@ public class DisplayMetrics implements Class_ {
     }
 
     @TargetApi(SdkUtil.DONUT)
-    private void addDonutApis() {
-        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.DONUT);
+    private void addDonutApis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("densityDpi").of(new DensityDpiValue(displayMetrics)));
     }
 
