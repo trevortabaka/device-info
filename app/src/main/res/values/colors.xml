@@ -3,12 +3,12 @@
     <!-- API levels -->
     <color name="base">#3e3e3e</color>
     <color name="base_1_1">#3e3e3e</color>
-    <color name="cupcake">#ffda48</color>
+    <color name="cupcake">#9e9a30</color>
     <color name="donut">#b17e5b</color>
     <color name="eclair">#b19f68</color>
     <color name="eclair_0_1">#b19f68</color>
     <color name="eclair_mr1">#b19f68</color>
-    <color name="froyo">#7dffb4</color>
+    <color name="froyo">#084b6e</color>
     <color name="gingerbread">#5d2a22</color>
     <color name="gingerbread_mr1">#5d2a22</color>
     <color name="honeycomb">#a78a31</color>
