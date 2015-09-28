@@ -23,8 +23,8 @@ public class DisplayMetrics implements Class_ {
         this.displayMetrics = displayMetrics;
         apis = new ArrayList<>();
         factory = ApiFactory.newInstance(displayMetrics.getClass());
-        if (SdkUtil.IS_BASE) addBaseApis();
-        if (SdkUtil.IS_DONUT) addDonutApis();
+        if (SdkUtil.IS_1_BASE) addBaseApis();
+        if (SdkUtil.IS_4_DONUT) addDonutApis();
     }
 
     @TargetApi(SdkUtil.BASE)

@@ -23,7 +23,7 @@ public class Runtime_ implements Class_ {
         this.runtime = runtime;
         apis = new ArrayList<>();
         factory = ApiFactory.newInstance(runtime.getClass());
-        if (SdkUtil.IS_BASE) addBaseApis();
+        if (SdkUtil.IS_1_BASE) addBaseApis();
     }
 
     @TargetApi(SdkUtil.BASE)

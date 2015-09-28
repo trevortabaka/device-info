@@ -26,9 +26,9 @@ public class Configuration implements Class_ {
         this.configuration = configuration;
         apis = new ArrayList<>();
         factory = ApiFactory.newInstance(configuration.getClass());
-        if (SdkUtil.IS_BASE) addBaseApis();
-        if (SdkUtil.IS_HONEYCOMB_MR2) addHoneycombMR2Apis();
-        if (SdkUtil.IS_MARSHMALLOW) addMarshmallowApis();
+        if (SdkUtil.IS_1_BASE) addBaseApis();
+        if (SdkUtil.IS_13_HONEYCOMB_MR2) addHoneycombMR2Apis();
+        if (SdkUtil.IS_23_MARSHMALLOW) addMarshmallowApis();
     }
 
     @Override

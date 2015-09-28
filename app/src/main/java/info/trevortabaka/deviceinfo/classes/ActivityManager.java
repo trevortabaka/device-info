@@ -22,7 +22,7 @@ public class ActivityManager implements Class_ {
         this.activityManager = activityManager;
         apis = new ArrayList<>();
         factory = ApiFactory.newInstance(activityManager.getClass());
-        if (SdkUtil.IS_ECLAIR) addEclairApis();
+        if (SdkUtil.IS_5_ECLAIR) addEclairApis();
     }
 
     @TargetApi(SdkUtil.ECLAIR)

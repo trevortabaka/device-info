@@ -31,7 +31,7 @@ public class AndroidModule {
     DisplayMetrics displayMetrics() {
         android.util.DisplayMetrics displayMetrics = new android.util.DisplayMetrics();
         Display defaultDisplay = context.getWindowManager().getDefaultDisplay();
-        if (SdkUtil.IS_JELLY_BEAN_MR1) {
+        if (SdkUtil.IS_17_JELLY_BEAN_MR1) {
             defaultDisplay.getRealMetrics(displayMetrics);
         } else {
             defaultDisplay.getMetrics(displayMetrics);
