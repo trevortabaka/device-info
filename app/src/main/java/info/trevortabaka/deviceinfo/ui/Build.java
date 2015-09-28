@@ -15,22 +15,20 @@ import info.trevortabaka.deviceinfo.value.TimeValue;
 
 public class Build implements Class_ {
     private final Collection<Api> apis;
-    private final ApiFactory.ApiClassFactory factory;
 
     @Inject
     public Build() {
         apis = new ArrayList<>();
-        factory = ApiFactory.newInstance(android.os.Build.class);
-        if (SdkUtil.IS_1_BASE) addBaseApis();
-        if (SdkUtil.IS_3_CUPCAKE) addCupcakeApis();
-        if (SdkUtil.IS_4_DONUT) addDonutApis();
-        if (SdkUtil.IS_8_FROYO) addFroyoApis();
-        if (SdkUtil.IS_9_GINGERBREAD) add9Apis();
-        if (SdkUtil.IS_21_LOLLIPOP) add21Apis();
+        ApiFactory.ApiClassFactory factory = ApiFactory.newInstance(android.os.Build.class);
+        if (SdkUtil.IS_1_BASE) addBaseApis(factory.withApi(SdkUtil.BASE));
+        if (SdkUtil.IS_3_CUPCAKE) addCupcakeApis(factory.withApi(SdkUtil.CUPCAKE));
+        if (SdkUtil.IS_4_DONUT) addDonutApis(factory.withApi(SdkUtil.DONUT));
+        if (SdkUtil.IS_8_FROYO) addFroyoApis(factory.withApi(SdkUtil.FROYO));
+        if (SdkUtil.IS_9_GINGERBREAD) add9Apis(factory.withApi(SdkUtil.GINGERBREAD));
+        if (SdkUtil.IS_21_LOLLIPOP) add21Apis(factory.withApi(SdkUtil.LOLLIPOP));
     }
 
-    private void addBaseApis() {
-        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.BASE);
+    private void addBaseApis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("BOARD").of(android.os.Build.BOARD));
         apis.add(factory.withName("BRAND").of(android.os.Build.BRAND));
         apis.add(factory.withName("DEVICE").of(android.os.Build.DEVICE));
@@ -45,33 +43,28 @@ public class Build implements Class_ {
         apis.add(factory.withName("USER").of(android.os.Build.USER));
     }
 
-    private void addCupcakeApis() {
-        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.CUPCAKE);
+    private void addCupcakeApis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("DISPLAY").of(android.os.Build.DISPLAY));
     }
 
-    private void addDonutApis() {
-        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.DONUT);
+    private void addDonutApis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("CPU_ABI").of(android.os.Build.CPU_ABI));
         apis.add(factory.withName("MANUFACTURER").of(android.os.Build.MANUFACTURER));
     }
 
-    private void addFroyoApis() {
-        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.FROYO);
+    private void addFroyoApis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("BOOTLOADER").of(android.os.Build.BOOTLOADER));
         apis.add(factory.withName("CPU_ABI2").of(android.os.Build.CPU_ABI2));
         apis.add(factory.withName("HARDWARE").of(android.os.Build.HARDWARE));
         apis.add(factory.withName("RADIO").of(android.os.Build.RADIO));
     }
 
-    private void add9Apis() {
-        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.GINGERBREAD);
+    private void add9Apis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("SERIAL").of(android.os.Build.SERIAL));
     }
 
     @TargetApi(SdkUtil.LOLLIPOP)
-    private void add21Apis() {
-        ApiFactory.ApiLevelFactory factory = this.factory.withApi(SdkUtil.LOLLIPOP);
+    private void add21Apis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("SUPPORTED_32_BIT_ABIS").of(android.os.Build.SUPPORTED_32_BIT_ABIS));
         apis.add(factory.withName("SUPPORTED_64_BIT_ABIS").of(android.os.Build.SUPPORTED_64_BIT_ABIS));
         apis.add(factory.withName("SUPPORTED_ABIS").of(android.os.Build.SUPPORTED_ABIS));
