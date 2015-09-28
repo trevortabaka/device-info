@@ -1,14 +1,12 @@
 package info.trevortabaka.deviceinfo.value;
 
-import android.content.res.Configuration;
-
 import info.trevortabaka.deviceinfo.api.ApiValue;
 
 public class TouchscreenValue implements ApiValue {
     private final int touchscreen;
 
-    public TouchscreenValue(Configuration configuration) {
-        this.touchscreen = configuration.touchscreen;
+    public TouchscreenValue(int touchscreen) {
+        this.touchscreen = touchscreen;
     }
 
     @Override

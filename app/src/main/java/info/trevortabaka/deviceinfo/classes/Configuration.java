@@ -42,7 +42,7 @@ public class Configuration implements Class_ {
         apis.add(factory.withName("orientation").of(new OrientationValue(configuration)));
         apis.add(factory.withName("screenLayout (long)").of(new ScreenLayoutLongValue(configuration)));
         apis.add(factory.withName("screenLayout (size)").of(new ScreenLayoutSizeValue(configuration)));
-        apis.add(factory.withName("touchscreen").of(new TouchscreenValue(configuration)));
+        apis.add(factory.withName("touchscreen").of(new TouchscreenValue(configuration.touchscreen)));
     }
 
     @TargetApi(SdkUtil.HONEYCOMB_MR2)

@@ -7,6 +7,7 @@ import dagger.Module;
 import dagger.Provides;
 import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.classes.Configuration;
+import info.trevortabaka.deviceinfo.classes.ConfigurationInfo;
 import info.trevortabaka.deviceinfo.classes.DisplayMetrics;
 import info.trevortabaka.deviceinfo.classes.Runtime_;
 import info.trevortabaka.deviceinfo.classes.Build;
@@ -16,11 +17,13 @@ public class ApisModule {
 
     @Provides
     List<Api> apis(Configuration configuration,
+                   ConfigurationInfo configurationInfo,
                    DisplayMetrics displayMetrics,
                    Runtime_ runtime,
                    Build build) {
         List<Api> apis = new ArrayList<>();
         apis.addAll(configuration.apis());
+        apis.addAll(configurationInfo.apis());
         apis.addAll(displayMetrics.apis());
         apis.addAll(runtime.apis());
         apis.addAll(build.apis());

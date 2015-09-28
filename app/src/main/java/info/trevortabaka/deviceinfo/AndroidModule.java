@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.ConfigurationInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.util.DisplayMetrics;
@@ -24,6 +25,11 @@ public class AndroidModule {
     @Provides
     Configuration configuration() {
         return context.getResources().getConfiguration();
+    }
+
+    @Provides
+    ConfigurationInfo configurationInfo(ActivityManager activityManager) {
+        return activityManager.getDeviceConfigurationInfo();
     }
 
     @Provides
