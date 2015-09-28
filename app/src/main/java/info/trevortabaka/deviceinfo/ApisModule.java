@@ -6,6 +6,7 @@ import java.util.List;
 import dagger.Module;
 import dagger.Provides;
 import info.trevortabaka.deviceinfo.api.Api;
+import info.trevortabaka.deviceinfo.classes.ActivityManager;
 import info.trevortabaka.deviceinfo.classes.Configuration;
 import info.trevortabaka.deviceinfo.classes.ConfigurationInfo;
 import info.trevortabaka.deviceinfo.classes.DisplayMetrics;
@@ -16,12 +17,14 @@ import info.trevortabaka.deviceinfo.classes.Build;
 public class ApisModule {
 
     @Provides
-    List<Api> apis(Configuration configuration,
+    List<Api> apis(ActivityManager activityManager,
+                   Configuration configuration,
                    ConfigurationInfo configurationInfo,
                    DisplayMetrics displayMetrics,
                    Runtime_ runtime,
                    Build build) {
         List<Api> apis = new ArrayList<>();
+        apis.addAll(activityManager.apis());
         apis.addAll(configuration.apis());
         apis.addAll(configurationInfo.apis());
         apis.addAll(displayMetrics.apis());
