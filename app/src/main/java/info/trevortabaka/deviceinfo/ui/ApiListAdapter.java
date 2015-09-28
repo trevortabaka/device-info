@@ -183,10 +183,11 @@ class ApiListAdapter extends ArrayAdapter<Api> {
             charSequence = charSequence.toString().toLowerCase();
 
             for (Api api : copyToSearch) {
+                String humanReadableValue = api.getHumanReadableValue();
                 if (api.getClassName().toLowerCase().contains(charSequence)
                         || api.getName().toLowerCase().contains(charSequence)
                         || api.getValue().toLowerCase().contains(charSequence)
-                        || api.getHumanReadableValue().toLowerCase().contains(charSequence)) {
+                        || (humanReadableValue != null && humanReadableValue.toLowerCase().contains(charSequence))) {
                     list.add(api);
                 }
             }
