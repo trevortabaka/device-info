@@ -17,14 +17,14 @@ public class SortingStrategies {
     public static final Comparator<? super Api> API_NAME = new Comparator<Api>() {
         @Override
         public int compare(Api first, Api second) {
-            return first.getName().compareTo(second.getName());
+            return first.getName().compareToIgnoreCase(second.getName());
         }
     };
 
     public static final Comparator<? super Api> CLASS_NAME = new Comparator<Api>() {
         @Override
         public int compare(Api first, Api second) {
-            return first.getClassName().compareTo(second.getClassName());
+            return first.getClassName().compareToIgnoreCase(second.getClassName());
         }
     };
 }
