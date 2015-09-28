@@ -84,9 +84,8 @@ class ApiListAdapter extends ArrayAdapter<Api> {
         synchronized (lock) {
             if (originalItems != null) {
                 Collections.sort(originalItems, comparator);
-            } else {
-                Collections.sort(items, comparator);
             }
+            Collections.sort(items, comparator);
         }
         notifyDataSetChanged();
     }
