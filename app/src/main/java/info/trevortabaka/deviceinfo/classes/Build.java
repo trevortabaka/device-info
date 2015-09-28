@@ -1,4 +1,4 @@
-package info.trevortabaka.deviceinfo.ui;
+package info.trevortabaka.deviceinfo.classes;
 
 import android.annotation.TargetApi;
 
@@ -25,6 +25,7 @@ public class Build implements Class_ {
         if (SdkUtil.IS_4_DONUT) addDonutApis(factory.withApi(SdkUtil.DONUT));
         if (SdkUtil.IS_8_FROYO) addFroyoApis(factory.withApi(SdkUtil.FROYO));
         if (SdkUtil.IS_9_GINGERBREAD) add9Apis(factory.withApi(SdkUtil.GINGERBREAD));
+        if (SdkUtil.IS_14_ICE_CREAM_SANDWICH) add14Apis(factory.withApi(SdkUtil.ICE_CREAM_SANDWICH));
         if (SdkUtil.IS_21_LOLLIPOP) add21Apis(factory.withApi(SdkUtil.LOLLIPOP));
     }
 
@@ -61,6 +62,11 @@ public class Build implements Class_ {
 
     private void add9Apis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("SERIAL").of(android.os.Build.SERIAL));
+    }
+
+    @TargetApi(SdkUtil.ICE_CREAM_SANDWICH)
+    private void add14Apis(ApiFactory.ApiLevelFactory factory) {
+        apis.add(factory.withName("getRadioVersion()").of(android.os.Build.getRadioVersion()));
     }
 
     @TargetApi(SdkUtil.LOLLIPOP)

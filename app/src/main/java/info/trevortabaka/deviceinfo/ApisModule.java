@@ -9,7 +9,7 @@ import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.classes.Configuration;
 import info.trevortabaka.deviceinfo.classes.DisplayMetrics;
 import info.trevortabaka.deviceinfo.classes.Runtime_;
-import info.trevortabaka.deviceinfo.ui.Build;
+import info.trevortabaka.deviceinfo.classes.Build;
 
 @Module(includes = AndroidModule.class)
 public class ApisModule {
