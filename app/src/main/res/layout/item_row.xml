@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
     tools:background="#000">
 
     <TextView
@@ -22,7 +21,7 @@
         android:shadowColor="#222"
         android:shadowRadius="4"
         android:textAppearance="@android:style/TextAppearance.Large.Inverse"
-        android:textSize="14dp"
+        android:textSize="14sp"
         tools:text="DisplayMetrics" />
 
     <TextView
