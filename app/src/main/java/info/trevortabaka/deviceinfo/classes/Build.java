@@ -11,6 +11,7 @@ import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.api.ApiFactory;
 import info.trevortabaka.deviceinfo.api.Class_;
 import info.trevortabaka.deviceinfo.util.SdkUtil;
+import info.trevortabaka.deviceinfo.value.SdkIntValue;
 import info.trevortabaka.deviceinfo.value.TimeValue;
 
 public class Build implements Class_ {
@@ -27,6 +28,7 @@ public class Build implements Class_ {
         if (SdkUtil.IS_9_GINGERBREAD) add9Apis(factory.withApi(SdkUtil.GINGERBREAD));
         if (SdkUtil.IS_14_ICE_CREAM_SANDWICH) add14Apis(factory.withApi(SdkUtil.ICE_CREAM_SANDWICH));
         if (SdkUtil.IS_21_LOLLIPOP) add21Apis(factory.withApi(SdkUtil.LOLLIPOP));
+        if (SdkUtil.IS_23_MARSHMALLOW) add23Apis(factory.withApi(SdkUtil.MARSHMALLOW));
     }
 
     private void addBaseApis(ApiFactory.ApiLevelFactory factory) {
@@ -42,6 +44,9 @@ public class Build implements Class_ {
         apis.add(factory.withName("TIME").of(new TimeValue(android.os.Build.TIME)));
         apis.add(factory.withName("TYPE").of(android.os.Build.TYPE));
         apis.add(factory.withName("USER").of(android.os.Build.USER));
+        apis.add(factory.withName("VERSION.INCREMENTAL").of(android.os.Build.VERSION.INCREMENTAL));
+        apis.add(factory.withName("VERSION.RELEASE").of(android.os.Build.VERSION.RELEASE));
+        apis.add(factory.withName("VERSION.SDK (deprecated)").of(android.os.Build.VERSION.SDK));
     }
 
     private void addCupcakeApis(ApiFactory.ApiLevelFactory factory) {
@@ -51,6 +56,8 @@ public class Build implements Class_ {
     private void addDonutApis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("CPU_ABI").of(android.os.Build.CPU_ABI));
         apis.add(factory.withName("MANUFACTURER").of(android.os.Build.MANUFACTURER));
+        apis.add(factory.withName("VERSION.CODENAME").of(android.os.Build.VERSION.CODENAME));
+        apis.add(factory.withName("VERSION.SDK_INT").of(new SdkIntValue(android.os.Build.VERSION.SDK_INT)));
     }
 
     private void addFroyoApis(ApiFactory.ApiLevelFactory factory) {
@@ -74,6 +81,13 @@ public class Build implements Class_ {
         apis.add(factory.withName("SUPPORTED_32_BIT_ABIS").of(android.os.Build.SUPPORTED_32_BIT_ABIS));
         apis.add(factory.withName("SUPPORTED_64_BIT_ABIS").of(android.os.Build.SUPPORTED_64_BIT_ABIS));
         apis.add(factory.withName("SUPPORTED_ABIS").of(android.os.Build.SUPPORTED_ABIS));
+    }
+
+    @TargetApi(SdkUtil.MARSHMALLOW)
+    private void add23Apis(ApiFactory.ApiLevelFactory factory) {
+        apis.add(factory.withName("VERSION.BASE_OS").of(android.os.Build.VERSION.BASE_OS));
+        apis.add(factory.withName("VERSION.PREVIEW_SDK_INT").of(android.os.Build.VERSION.PREVIEW_SDK_INT));
+        apis.add(factory.withName("VERSION.SECURITY_PATCH").of(android.os.Build.VERSION.SECURITY_PATCH));
     }
 
     @Override
