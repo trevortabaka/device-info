@@ -3,11 +3,12 @@ package info.trevortabaka.deviceinfo.ui;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import java.util.List;
 
@@ -36,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new ApiListAdapter(this, apis);
         adapter.sort(SortingStrategies.API_LEVEL);
-        ListView list = (ListView) findViewById(R.id.list);
+        RecyclerView list = (RecyclerView) findViewById(R.id.list);
+        list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
     }
 
