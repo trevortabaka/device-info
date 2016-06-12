@@ -11,6 +11,7 @@ import info.trevortabaka.deviceinfo.api.Api;
 import info.trevortabaka.deviceinfo.api.ApiFactory;
 import info.trevortabaka.deviceinfo.api.Class_;
 import info.trevortabaka.deviceinfo.util.SdkUtil;
+import info.trevortabaka.deviceinfo.value.StringArrayValue;
 import info.trevortabaka.deviceinfo.value.TimeValue;
 
 public class Build implements Class_ {
@@ -53,6 +54,7 @@ public class Build implements Class_ {
         apis.add(factory.withName("MANUFACTURER").of(android.os.Build.MANUFACTURER));
     }
 
+    @TargetApi(android.os.Build.VERSION_CODES.FROYO)
     private void addFroyoApis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("BOOTLOADER").of(android.os.Build.BOOTLOADER));
         apis.add(factory.withName("CPU_ABI2").of(android.os.Build.CPU_ABI2));
@@ -60,6 +62,7 @@ public class Build implements Class_ {
         apis.add(factory.withName("RADIO").of(android.os.Build.RADIO));
     }
 
+    @TargetApi(android.os.Build.VERSION_CODES.GINGERBREAD)
     private void add9Apis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("SERIAL").of(android.os.Build.SERIAL));
     }
@@ -71,9 +74,9 @@ public class Build implements Class_ {
 
     @TargetApi(SdkUtil.LOLLIPOP)
     private void add21Apis(ApiFactory.ApiLevelFactory factory) {
-        apis.add(factory.withName("SUPPORTED_32_BIT_ABIS").of(android.os.Build.SUPPORTED_32_BIT_ABIS));
-        apis.add(factory.withName("SUPPORTED_64_BIT_ABIS").of(android.os.Build.SUPPORTED_64_BIT_ABIS));
-        apis.add(factory.withName("SUPPORTED_ABIS").of(android.os.Build.SUPPORTED_ABIS));
+        apis.add(factory.withName("SUPPORTED_32_BIT_ABIS").of(new StringArrayValue(android.os.Build.SUPPORTED_32_BIT_ABIS)));
+        apis.add(factory.withName("SUPPORTED_64_BIT_ABIS").of(new StringArrayValue(android.os.Build.SUPPORTED_64_BIT_ABIS)));
+        apis.add(factory.withName("SUPPORTED_ABIS").of(new StringArrayValue(android.os.Build.SUPPORTED_ABIS)));
     }
 
     @Override

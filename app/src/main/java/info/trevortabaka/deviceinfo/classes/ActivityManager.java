@@ -1,6 +1,8 @@
 package info.trevortabaka.deviceinfo.classes;
 
 import android.annotation.TargetApi;
+import android.os.*;
+import android.os.Build;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,6 +32,7 @@ public class ActivityManager implements Class_ {
         apis.add(factory.withName("getMemoryClass()").of(activityManager.getMemoryClass(), "MiB"));
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void add11Apis(ApiFactory.ApiLevelFactory factory) {
         apis.add(factory.withName("getLauncherLargeIconDensity()").of(activityManager.getLauncherLargeIconDensity(), "dpi"));
         apis.add(factory.withName("getLauncherLargeIconSize()").of(activityManager.getLauncherLargeIconSize(), "px"));
