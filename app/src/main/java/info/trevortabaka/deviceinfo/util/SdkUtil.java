@@ -26,6 +26,11 @@ public class SdkUtil {
     public static final int LOLLIPOP = Build.VERSION_CODES.LOLLIPOP;
     public static final int LOLLIPOP_MR1 = Build.VERSION_CODES.LOLLIPOP_MR1;
     public static final int MARSHMALLOW = Build.VERSION_CODES.M;
+    public static final int NOUGAT = Build.VERSION_CODES.N;
+    public static final int NOUGAT_MR1 = Build.VERSION_CODES.N_MR1;
+    public static final int OREO = Build.VERSION_CODES.O;
+    public static final int OREO_MR1 = Build.VERSION_CODES.O_MR1;
+    public static final int PIE = Build.VERSION_CODES.P;
 
     public static final boolean IS_1_BASE = isSdk(BASE);
     public static final boolean IS_2_BASE_1_1 = isSdk(BASE_1_1);

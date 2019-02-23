@@ -1,7 +1,6 @@
 package info.trevortabaka.deviceinfo.ui;
 
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new ApiListAdapter(this, apis);
         adapter.sort(SortingStrategies.API_LEVEL);
-        RecyclerView list = (RecyclerView) findViewById(R.id.list);
+        RecyclerView list = findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
     }
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupSearchView(MenuItem item) {
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        SearchView searchView = (SearchView) item.getActionView();
         searchView.setOnQueryTextListener(new SearchOnQueryTextListener());
     }
 

@@ -67,6 +67,16 @@ public class SdkIntValue implements ApiValue {
                 return "LOLLIPOP_MR1";
             case SdkUtil.MARSHMALLOW:
                 return "MARSHMALLOW";
+            case SdkUtil.NOUGAT:
+                return "NOUGAT";
+            case SdkUtil.NOUGAT_MR1:
+                return "NOUGAT_MR1";
+            case SdkUtil.OREO:
+                return "OREO";
+            case SdkUtil.OREO_MR1:
+                return "OREO_MR1";
+            case SdkUtil.PIE:
+                return "PIE";
             default:
                 return null;
         }
