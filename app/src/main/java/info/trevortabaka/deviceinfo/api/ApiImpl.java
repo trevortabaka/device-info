@@ -1,5 +1,7 @@
 package info.trevortabaka.deviceinfo.api;
 
+import android.support.annotation.NonNull;
+
 class ApiImpl implements Api {
     private final Class apiClass;
     private final int apiLevel;
@@ -25,7 +27,8 @@ class ApiImpl implements Api {
 
     @Override
     public String getPackageName() {
-        return apiClass.getPackage().getName();
+        Package apiClassPackage = apiClass.getPackage();
+        return apiClassPackage != null ? apiClassPackage.getName() : "Unknown";
     }
 
     @Override
@@ -43,6 +46,7 @@ class ApiImpl implements Api {
         return value.getHumanReadableValue();
     }
 
+    @NonNull
     @Override
     public String toString() {
         return getName();

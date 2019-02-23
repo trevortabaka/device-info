@@ -53,14 +53,15 @@ class ApiListAdapter extends RecyclerView.Adapter<ApiListAdapter.Holder> {
         notifyDataSetChanged();
     }
 
+    @NonNull
     @Override
-    public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(LAYOUT_ID, parent, false);
         return new Holder(view);
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    public void onBindViewHolder(@NonNull Holder holder, int position) {
         holder.update(getItem(position));
     }
 
@@ -104,11 +105,11 @@ class ApiListAdapter extends RecyclerView.Adapter<ApiListAdapter.Holder> {
 
         Holder(View view) {
             super(view);
-            className = (TextView) view.findViewById(R.id.class_name);
-            name = (TextView) view.findViewById(R.id.name);
-            value = (TextView) view.findViewById(R.id.value);
-            humanReadableValue = (TextView) view.findViewById(R.id.human_readable_value);
-            apiLevel = (TextView) view.findViewById(R.id.api_level);
+            className = view.findViewById(R.id.class_name);
+            name = view.findViewById(R.id.name);
+            value = view.findViewById(R.id.value);
+            humanReadableValue = view.findViewById(R.id.human_readable_value);
+            apiLevel = view.findViewById(R.id.api_level);
         }
 
         void update(Api api) {
