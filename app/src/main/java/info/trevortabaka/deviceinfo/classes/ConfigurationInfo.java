@@ -16,7 +16,7 @@ import info.trevortabaka.deviceinfo.value.TouchscreenValue;
 
 public class ConfigurationInfo implements Class_ {
     private final android.content.pm.ConfigurationInfo configurationInfo;
-    private Collection<Api> apis;
+    private final Collection<Api> apis;
 
     @Inject
     public ConfigurationInfo(android.content.pm.ConfigurationInfo configurationInfo) {

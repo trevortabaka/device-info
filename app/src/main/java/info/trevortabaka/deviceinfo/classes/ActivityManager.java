@@ -1,7 +1,6 @@
 package info.trevortabaka.deviceinfo.classes;
 
 import android.annotation.TargetApi;
-import android.os.*;
 import android.os.Build;
 
 import java.util.ArrayList;

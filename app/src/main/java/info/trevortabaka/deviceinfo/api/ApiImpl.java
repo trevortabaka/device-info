@@ -1,12 +1,12 @@
 package info.trevortabaka.deviceinfo.api;
 
 class ApiImpl implements Api {
-    private Class apiClass;
-    private int apiLevel;
-    private String name;
-    private ApiValue value;
+    private final Class apiClass;
+    private final int apiLevel;
+    private final String name;
+    private final ApiValue value;
 
-    public ApiImpl(Class apiClass, int apiLevel, String name, ApiValue value) {
+    ApiImpl(Class apiClass, int apiLevel, String name, ApiValue value) {
         this.apiClass = apiClass;
         this.apiLevel = apiLevel;
         this.name = name;

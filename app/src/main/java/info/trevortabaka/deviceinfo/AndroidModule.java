@@ -16,7 +16,7 @@ import info.trevortabaka.deviceinfo.util.SdkUtil;
 
 @Module
 public class AndroidModule {
-    private Activity context;
+    private final Activity context;
 
     public AndroidModule(Activity context) {
         this.context = context;

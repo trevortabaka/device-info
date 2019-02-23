@@ -27,23 +27,23 @@ class ApiListAdapter extends RecyclerView.Adapter<ApiListAdapter.Holder> {
     private List<Api> originalItems;
     private ApiFilter filter;
 
-    public ApiListAdapter(Context context, List<Api> objects) {
+    ApiListAdapter(Context context, List<Api> objects) {
         items = objects;
         layoutInflater = LayoutInflater.from(context);
     }
 
-    public Filter getFilter() {
+    Filter getFilter() {
         if (filter == null) {
             filter = new ApiFilter();
         }
         return filter;
     }
 
-    public Api getItem(int position) {
+    private Api getItem(int position) {
         return items.get(position);
     }
 
-    public void sort(Comparator<? super Api> comparator) {
+    void sort(Comparator<? super Api> comparator) {
         synchronized (lock) {
             if (originalItems != null) {
                 Collections.sort(originalItems, comparator);
@@ -69,7 +69,7 @@ class ApiListAdapter extends RecyclerView.Adapter<ApiListAdapter.Holder> {
         return items.size();
     }
 
-    public static class Holder extends RecyclerView.ViewHolder {
+    static class Holder extends RecyclerView.ViewHolder {
         private static final int[] colors = {
                 0,
                 R.color.base,
@@ -102,7 +102,7 @@ class ApiListAdapter extends RecyclerView.Adapter<ApiListAdapter.Holder> {
         private final TextView apiLevel;
         private final TextView className;
 
-        public Holder(View view) {
+        Holder(View view) {
             super(view);
             className = (TextView) view.findViewById(R.id.class_name);
             name = (TextView) view.findViewById(R.id.name);
@@ -111,7 +111,7 @@ class ApiListAdapter extends RecyclerView.Adapter<ApiListAdapter.Holder> {
             apiLevel = (TextView) view.findViewById(R.id.api_level);
         }
 
-        public void update(Api api) {
+        void update(Api api) {
             className.setText(api.getClassName());
             name.setText(api.getName());
             humanReadableValue.setText(api.getHumanReadableValue());

@@ -4,8 +4,8 @@ import java.util.Comparator;
 
 import info.trevortabaka.deviceinfo.api.Api;
 
-public class SortingStrategies {
-    public static final Comparator<? super Api> API_LEVEL = new Comparator<Api>() {
+class SortingStrategies {
+    static final Comparator<? super Api> API_LEVEL = new Comparator<Api>() {
         @Override
         public int compare(Api first, Api second) {
             int x = first.getApiLevel();
@@ -14,14 +14,14 @@ public class SortingStrategies {
         }
     };
 
-    public static final Comparator<? super Api> API_NAME = new Comparator<Api>() {
+    static final Comparator<? super Api> API_NAME = new Comparator<Api>() {
         @Override
         public int compare(Api first, Api second) {
             return first.getName().compareToIgnoreCase(second.getName());
         }
     };
 
-    public static final Comparator<? super Api> CLASS_NAME = new Comparator<Api>() {
+    static final Comparator<? super Api> CLASS_NAME = new Comparator<Api>() {
         @Override
         public int compare(Api first, Api second) {
             return first.getClassName().compareToIgnoreCase(second.getClassName());

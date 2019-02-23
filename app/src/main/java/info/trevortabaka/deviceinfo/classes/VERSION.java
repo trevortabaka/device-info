@@ -15,7 +15,7 @@ import info.trevortabaka.deviceinfo.util.SdkUtil;
 import info.trevortabaka.deviceinfo.value.SdkIntValue;
 
 public class VERSION implements Class_ {
-    private Collection<Api> apis;
+    private final Collection<Api> apis;
 
     @Inject
     public VERSION() {

@@ -25,7 +25,7 @@ public class ApiFactory {
     private static class Builder implements ApiClassFactory {
         private final Class apiClass;
 
-        public Builder(Class apiClass) {
+        Builder(Class apiClass) {
             this.apiClass = apiClass;
         }
 
@@ -40,7 +40,7 @@ public class ApiFactory {
         private final Class apiClass;
         private final int apiLevel;
 
-        public Builder2(Class apiClass, int apiLevel) {
+        Builder2(Class apiClass, int apiLevel) {
             this.apiClass = apiClass;
             this.apiLevel = apiLevel;
         }
@@ -57,7 +57,7 @@ public class ApiFactory {
         private final int apiLevel;
         private final String name;
 
-        public Builder3(Class apiClass, int apiLevel, String name) {
+        Builder3(Class apiClass, int apiLevel, String name) {
             this.apiClass = apiClass;
             this.apiLevel = apiLevel;
             this.name = name;
