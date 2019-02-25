@@ -15,12 +15,11 @@ import info.trevortabaka.deviceinfo.util.SdkUtil;
 
 public class Runtime_ implements Class_ {
     private final java.lang.Runtime runtime;
-    private final Collection<Api> apis;
+    private final Collection<Api> apis = new ArrayList<>();
 
     @Inject
     public Runtime_(java.lang.Runtime runtime) {
         this.runtime = runtime;
-        apis = new ArrayList<>();
         ApiFactory.ApiClassFactory factory = ApiFactory.newInstance(runtime.getClass());
         if (SdkUtil.IS_1_BASE) addBaseApis(factory.withApi(SdkUtil.BASE));
     }

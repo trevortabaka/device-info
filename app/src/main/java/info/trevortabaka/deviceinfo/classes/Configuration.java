@@ -18,12 +18,11 @@ import info.trevortabaka.deviceinfo.value.TouchscreenValue;
 
 public class Configuration implements Class_ {
     private final android.content.res.Configuration configuration;
-    private final Collection<Api> apis;
+    private final Collection<Api> apis = new ArrayList<>();
 
     @Inject
     public Configuration(android.content.res.Configuration configuration) {
         this.configuration = configuration;
-        apis = new ArrayList<>();
         ApiFactory.ApiClassFactory factory = ApiFactory.newInstance(configuration.getClass());
         if (SdkUtil.IS_1_BASE) addBaseApis(factory.withApi(SdkUtil.BASE));
         if (SdkUtil.IS_13_HONEYCOMB_MR2) addHoneycombMR2Apis(factory.withApi(SdkUtil.HONEYCOMB_MR2));

@@ -16,12 +16,11 @@ import info.trevortabaka.deviceinfo.value.TouchscreenValue;
 
 public class ConfigurationInfo implements Class_ {
     private final android.content.pm.ConfigurationInfo configurationInfo;
-    private final Collection<Api> apis;
+    private final Collection<Api> apis = new ArrayList<>();
 
     @Inject
     public ConfigurationInfo(android.content.pm.ConfigurationInfo configurationInfo) {
         this.configurationInfo = configurationInfo;
-        this.apis = new ArrayList<>();
         ApiFactory.ApiClassFactory factory = ApiFactory.newInstance(configurationInfo.getClass());
         if (SdkUtil.IS_3_CUPCAKE) add3Apis(factory.withApi(SdkUtil.CUPCAKE));
         if (SdkUtil.IS_4_DONUT) add4Apis(factory.withApi(SdkUtil.DONUT));

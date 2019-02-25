@@ -15,11 +15,10 @@ import info.trevortabaka.deviceinfo.util.SdkUtil;
 import info.trevortabaka.deviceinfo.value.SdkIntValue;
 
 public class VERSION implements Class_ {
-    private final Collection<Api> apis;
+    private final Collection<Api> apis = new ArrayList<>();
 
     @Inject
     public VERSION() {
-        this.apis = new ArrayList<>();
         ApiFactory.ApiClassFactory factory = ApiFactory.newInstance(Build.VERSION.class);
         if (SdkUtil.IS_1_BASE) addBaseApis(factory.withApi(SdkUtil.BASE));
         if (SdkUtil.IS_4_DONUT) addDonutApis(factory.withApi(SdkUtil.DONUT));

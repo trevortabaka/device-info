@@ -15,11 +15,10 @@ import info.trevortabaka.deviceinfo.value.StringArrayValue;
 import info.trevortabaka.deviceinfo.value.TimeValue;
 
 public class Build implements Class_ {
-    private final Collection<Api> apis;
+    private final Collection<Api> apis = new ArrayList<>();
 
     @Inject
     public Build() {
-        apis = new ArrayList<>();
         ApiFactory.ApiClassFactory factory = ApiFactory.newInstance(android.os.Build.class);
         if (SdkUtil.IS_1_BASE) addBaseApis(factory.withApi(SdkUtil.BASE));
         if (SdkUtil.IS_3_CUPCAKE) addCupcakeApis(factory.withApi(SdkUtil.CUPCAKE));

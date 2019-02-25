@@ -15,12 +15,11 @@ import info.trevortabaka.deviceinfo.util.SdkUtil;
 
 public class DisplayMetrics implements Class_ {
     private final android.util.DisplayMetrics displayMetrics;
-    private final Collection<Api> apis;
+    private final Collection<Api> apis = new ArrayList<>();
 
     @Inject
     public DisplayMetrics(android.util.DisplayMetrics displayMetrics) {
         this.displayMetrics = displayMetrics;
-        apis = new ArrayList<>();
         ApiFactory.ApiClassFactory factory = ApiFactory.newInstance(displayMetrics.getClass());
         if (SdkUtil.IS_1_BASE) addBaseApis(factory.withApi(SdkUtil.BASE));
         if (SdkUtil.IS_4_DONUT) addDonutApis(factory.withApi(SdkUtil.DONUT));

@@ -15,12 +15,11 @@ import info.trevortabaka.deviceinfo.util.SdkUtil;
 
 public class ActivityManager implements Class_ {
     private final android.app.ActivityManager activityManager;
-    private final Collection<Api> apis;
+    private final Collection<Api> apis = new ArrayList<>();
 
     @Inject
     public ActivityManager(android.app.ActivityManager activityManager) {
         this.activityManager = activityManager;
-        apis = new ArrayList<>();
         ApiFactory.ApiClassFactory factory = ApiFactory.newInstance(activityManager.getClass());
         if (SdkUtil.IS_5_ECLAIR) addEclairApis(factory.withApi(SdkUtil.ECLAIR));
         if (SdkUtil.IS_11_HONEYCOMB) add11Apis(factory.withApi(SdkUtil.HONEYCOMB));
